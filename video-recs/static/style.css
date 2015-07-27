@@ -1,31 +1,13 @@
-body
-{
-  margin: 0;
-  background:#181B18;
-  /*background-image:url("equalizer.jpg");*/
-  /*background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(125,126,125,1)), color-stop(100%,rgba(14,14,14,1)));*/
-  /*background-position:100px 10px;*/
-}
-#body
-{
-  color: white;
-}
 #head
 {
   background-image:url("pixel.jpg");
   background-size: 90%;
-  /*background-repeat: no-repeat;*/
-/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(225,255,255,1)), color-stop(7%,rgba(225,255,255,1)), color-stop(12%,rgba(225,255,255,1)), color-stop(12%,rgba(253,255,255,1)), color-stop(30%,rgba(230,248,253,1)), color-stop(54%,rgba(200,238,251,1)), color-stop(75%,rgba(190,228,248,1)), color-stop(100%,rgba(177,216,245,1))); /* Chrome,Safari4+ */*/
-margin:0;
+  margin:0;
 }
 #head h1
 {
-  /*position: relative;*/
-  margin:0 46.5%;
-  /*background: blue;*/
+  margin:0 44.5%;
   padding: 10px 6px;
-  /*background-image:url("5music.png");*/
-  /*background-color:blue;*/
   color: black;
 }
 #head img
@@ -42,7 +24,6 @@ margin:0;
   background:black;
   padding: 20px;
   margin: 0 auto;
-  /*line-height:15px;*/
 }
 .container
 {
@@ -50,7 +31,6 @@ margin:0;
     overflow: hidden;
     background: white;
     padding: 10px;
-    /*width: 950px;*/
 }
 #header ul
 {
@@ -71,7 +51,6 @@ margin:0;
 {
   margin-right:10px;
   float:right;
-  /*line-height:1px*/
 }
 a:link
 {
@@ -81,4 +60,22 @@ a:link
 a:visited
 {
   color: black;
+}
+body
+{
+  margin: 0;
+  background:#181B18;
+}
+#body
+{
+  color: white;
+  margin-left: 43%;
+}
+#body h3
+{
+  margin-left: 7%;
+}
+#body input[type="number"]
+{
+   width:60px;
 }
