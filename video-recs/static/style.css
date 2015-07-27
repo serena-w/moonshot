@@ -2,9 +2,13 @@ body
 {
   margin: 0;
   background:#181B18;
-  background-image:url("equalizer.jpg");
+  /*background-image:url("equalizer.jpg");*/
   /*background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(125,126,125,1)), color-stop(100%,rgba(14,14,14,1)));*/
   /*background-position:100px 10px;*/
+}
+#body
+{
+  color: white;
 }
 #head
 {
