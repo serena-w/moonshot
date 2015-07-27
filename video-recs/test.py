@@ -32,7 +32,7 @@ QUERY_TERM = "dog"
 
 class MainHandler(webapp2.RequestHandler):
   def get(self):
-    if API_KEY == "AIzaSyAx04A3kgr6A6WmICcFAjwcecSPOTKocIY":
+    if API_KEY == "REPLACE_ME":
       self.response.write(REGISTRATION_INSTRUCTIONS)
     else:
       #Present a list of videos associated with the keyword
