@@ -1,0 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Marck+Script);
+
+#greeting {
+  font-family: 'Marck Script', sans-serif;
+  text-align: center;
+  font-size: 30px;
+}
