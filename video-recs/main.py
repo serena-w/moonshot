@@ -33,7 +33,7 @@ class Results(object):
     def __init__(self, search):
         self.search = search
         self.results=[""]
-        if search.time<5:
+        if search.time < 5:
             self.results[0]=video_list["short"]
         elif search.time>=5 and search.time<10:
             self.results[0]=video_list["medium"]
