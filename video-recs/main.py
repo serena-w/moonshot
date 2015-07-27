@@ -19,7 +19,7 @@ import jinja2
 from google.appengine.ext import ndb
 from google.appengine.api import users
 
-env = jinja2.Environment(loader = jinja2.FileSystemLoader('template'))
+env = jinja2.Environment(loader = jinja2.FileSystemLoader('templates'))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
