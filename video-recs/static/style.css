@@ -1,0 +1,80 @@
+body
+{
+  margin: 0;
+  background:#181B18;
+  background-image:url("equalizer.jpg");
+  /*background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(125,126,125,1)), color-stop(100%,rgba(14,14,14,1)));*/
+  /*background-position:100px 10px;*/
+}
+#head
+{
+  background-image:url("pixel.jpg");
+  background-size: 90%;
+  /*background-repeat: no-repeat;*/
+/*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(225,255,255,1)), color-stop(7%,rgba(225,255,255,1)), color-stop(12%,rgba(225,255,255,1)), color-stop(12%,rgba(253,255,255,1)), color-stop(30%,rgba(230,248,253,1)), color-stop(54%,rgba(200,238,251,1)), color-stop(75%,rgba(190,228,248,1)), color-stop(100%,rgba(177,216,245,1))); /* Chrome,Safari4+ */*/
+margin:0;
+}
+#head h1
+{
+  /*position: relative;*/
+  margin:0 46.5%;
+  /*background: blue;*/
+  padding: 10px 6px;
+  /*background-image:url("5music.png");*/
+  /*background-color:blue;*/
+  color: black;
+}
+#head img
+{
+  height: 10%;
+  width: 10%;
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  -webkit-filter: grayscale(0%);
+}
+#header
+{
+  background:black;
+  padding: 20px;
+  margin: 0 auto;
+  /*line-height:15px;*/
+}
+.container
+{
+    margin: 0 auto;
+    overflow: hidden;
+    background: white;
+    padding: 10px;
+    /*width: 950px;*/
+}
+#header ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background:white;
+  float: left;
+  font-weight:bold;
+}
+#header li
+{
+  padding: 10px;
+  float:left;
+}
+#header nav#right
+{
+  margin-right:10px;
+  float:right;
+  /*line-height:1px*/
+}
+a:link
+{
+  text-decoration:none;
+  color: black;
+}
+a:visited
+{
+  color: black;
+}

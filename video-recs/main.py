@@ -15,10 +15,26 @@
 # limitations under the License.
 #
 import webapp2
+import jinja2
+from google.appengine.ext import ndb
+from google.appengine.api import users
+
+env = jinja2.Environment(loader = jinja2.FileSystemLoader('template'))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        user = users.get_current_user()
+        login_url = ''
+        logout_url = ''
+        email = ''
+        if user:
+            email = user.email()
+            logout_url = users.create_logout_url('/')
+        else:
+            login_url = users.create_login_url('/')
+        template = env.get_template('main.html')
+        variables = {}
+        self.response.write(template.render(variables))
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
