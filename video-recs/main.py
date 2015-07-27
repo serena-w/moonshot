@@ -21,7 +21,26 @@ from google.appengine.api import users
 
 env = jinja2.Environment(loader = jinja2.FileSystemLoader('templates'))
 
-class MainHandler(webapp2.RequestHandler):
+video_list = {'short': "https://www.youtube.com/watch?v=TZPN9g2pmPQ",
+              'medium': "https://www.youtube.com/watch?v=7oZu3-PU6KA",
+              'long': "https://www.youtube.com/watch?v=bgD9d4-nw5A"}
+
+class Search(ndb.Model):
+    time = ndb.IntegerProperty(required=True)
+    genre = ndb.StringProperty()
+
+class Results(object):
+    def __init__(self, search):
+        self.search = search
+        self.results=[""]
+        if search.time<5:
+            self.results[0]=video_list["short"]
+        elif search.time>=5 and search.time<10:
+            self.results[0]=video_list["medium"]
+        else:
+            self.results[0]=video_list["long"]
+
+class SearchHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         login_url = ''
@@ -36,6 +55,17 @@ class MainHandler(webapp2.RequestHandler):
         variables = {}
         self.response.write(template.render(variables))
 
+    def post(self):
+        time = int(self.request.get("time"))
+        search = Search(time=time)
+        search.put()
+        results = Results(search)
+        template = env.get_template('results.html')
+        variables = {'link': results.results[0]}
+        self.response.write(template.render(variables))
+
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', SearchHandler),
+    ('/search', SearchHandler),
 ], debug=True)
