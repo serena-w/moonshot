@@ -44,9 +44,9 @@ class SearchHandler(webapp2.RequestHandler):
             email = user.email()
             logout_url = users.create_logout_url('/')
         else:
-            login_url = users.create_login_url('/')
+            login_url = users.create_login_url(self.request.uri)
         template = env.get_template('main.html')
-        variables = {}
+        variables = {"logout_url":logout_url,"login_url":login_url}
         self.response.write(template.render(variables))
     """
     def post(self):
