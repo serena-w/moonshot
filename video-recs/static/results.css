@@ -5,3 +5,60 @@
   text-align: center;
   font-size: 30px;
 }
+
+/*
+#saved_list {
+  text-align: left;
+}
+
+#homepage {
+  text-align: center;
+}
+
+#account {
+  text-align: right;
+}
+*/
+
+#header
+{
+  background:black;
+  padding: 20px;
+  margin: 0 auto;
+}
+.container
+{
+    margin: 0 auto;
+    overflow: hidden;
+    background: white;
+    padding: 10px;
+}
+#header ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background:white;
+  float: left;
+  font-weight:bold;
+}
+#header li
+{
+  padding: 10px;
+  float:left;
+}
+#header nav#right
+{
+  margin-right:10px;
+  float:right;
+}
+a:link
+{
+  text-decoration:none;
+  color: black;
+}
+a:visited
+{
+  color: black;
+}
