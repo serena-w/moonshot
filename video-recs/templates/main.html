@@ -3,10 +3,10 @@
 <link href="static/style.css" rel="stylesheet">
   <title>Video Scheduler</title>
   <body>
-    <section id ="head">
+    <!-- <section id ="head">
       <img src ="static/media.png" class ="brightness">
       <h1>Video Scheduler</h1>
-    </section>
+    </section> -->
     <header id ="header">
           <div class ="container">
           <nav id="left">
@@ -23,15 +23,38 @@
             </ul>
           </nav>
         </div>
-        <div id = "body">
-              <form action="/search" method="post">
-               <h3>Time available</h3>
-              <input type="number" min="0" max="24" value="hours" placeholder = "hours" names ="hours">
-              <input type="number" min="1" max="60" value="minutes" placeholder = "minutes" name ="minutes">
-              <input type="number" min="1" max="60" value="seconds" placeholder = "seconds" name="seconds">
-              <input type="submit" value="Submit">
-            </form>
-        </div>
     </header>
+    <video id="bg" loop autoplay>
+        <source src="static/snow.mp4" muted="true" type="video/mp4">
+    </video>
+    <div id = "body">
+          <form action="/post" method="search">
+           <h3>TIME AVAILABLE</h3>
+          <input type="number" min="0" max="24" value="hours" placeholder = "HOURS" size ="100">
+          <input type="number" min="1" max="60" value="minutes" placeholder = "MINUTES">
+          <input type="number" min="1" max="60" value="seconds" placeholder = "SECONDS"><br>
+              <div id = "check">
+                <ul id="categories">
+                  <li>comedy</li>
+                  <li>romance</li>
+                  <li>horror</li>
+                  <li>action</li>
+                  <li>mystery</li>
+                  <li>sci-fi</li>
+                </ul>
+                <div id="break">
+                </div>
+                <br>
+                  <input type="checkbox" value="comedy" name="comedy">
+                  <input type="checkbox" value="romance" name="romance">
+                  <input type="checkbox" value="horror" name="horror">
+                  <input type="checkbox" value="action" name="action">
+                  <input type="checkbox" value="mystery" name="mystery">
+                  <input type="checkbox" value="sci-fi" name="sci-fi">
+                  <br>
+                  <input type="submit" value="Find Videos">
+              </div>
+        </form>
+    </div>
   </body>
 </html>

@@ -66,16 +66,98 @@ body
   margin: 0;
   background:#181B18;
 }
+video#bg{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    /*background: url(snow.jpg) no-repeat;*/
+    background-size: cover;
+}
 #body
 {
   color: white;
-  margin-left: 43%;
+  margin-left: 10%;
 }
 #body h3
 {
-  margin-left: 7%;
+  font-size: 60pt;
+  margin-left: 22%;
+}
+#body input
+{
+  margin-left: 5%;
 }
 #body input[type="number"]
 {
-   width:60px;
+   width:250px;
+   height:50px;
+   opacity: 0.1;
+   font-size: 20pt;
+   /*margin-top: 10%;*/
+   margin-right:10%;
+}
+#categories li
+{
+  list-style-type: none;
+  float:left;
+  padding: 10px;
+  margin-left:120px;
+}
+#check input[type="checkbox"]
+{
+  /*display: inline;*/
+  float: left;
+  margin-left: 175px;
+}
+#break
+{
+  clear:both;
+}
+#body input[type="number"]:hover
+{
+   opacity: 1;
+}
+#body input[type="submit"]
+{
+margin-top: 80px;
+margin-left: 35.5%;
+
+background: #ffffff;
+background-image: -webkit-linear-gradient(top, #ffffff, #c7c7c7);
+background-image: -moz-linear-gradient(top, #ffffff, #c7c7c7);
+background-image: -ms-linear-gradient(top, #ffffff, #c7c7c7);
+background-image: -o-linear-gradient(top, #ffffff, #c7c7c7);
+background-image: linear-gradient(to bottom, #ffffff, #c7c7c7);
+-webkit-border-radius: 25;
+-moz-border-radius: 25;
+border-radius: 25px;
+font-family: Arial;
+color: #000000;
+font-size: 50px;
+padding: 10px 20px 10px 20px;
+text-decoration: none;
+}
+
+#body input[type="submit"]:hover
+ {
+  background: #545454;
+  background-image: -webkit-linear-gradient(top, #545454, #abbcc7);
+  background-image: -moz-linear-gradient(top, #545454, #abbcc7);
+  background-image: -ms-linear-gradient(top, #545454, #abbcc7);
+  background-image: -o-linear-gradient(top, #545454, #abbcc7);
+  background-image: linear-gradient(to bottom, #545454, #abbcc7);
+  text-decoration: none;
+}
+
+::-webkit-input-placeholder
+{
+  font-size: 20pt;
+
 }
