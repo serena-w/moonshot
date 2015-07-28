@@ -12,7 +12,7 @@
           <nav id="left">
             <ul>
               <li><a href ="#">SAVED</a></li>
-              <li><a href ="#">HOME</a></li>
+              <li><a href ="/">HOME</a></li>
               <li><a href ="#">PROFILE</a></li>
             </ul>
           </nav>
@@ -31,7 +31,21 @@
 
 
     <div class="video">
-      {{link}}
+          <p>Videos: </p>
+          {% for video in videos %}
+            <img src="{{ video[0].snippet.thumbnails.default.url }}" style="padding-right: 15px">
+            <div style="vertical-align:top; display: inline-block">
+              <strong>
+                <a href="https://www.youtube.com/watch?v={{video[0].id}}" target="_blank">
+                  {{ video[0].snippet.title }}
+                </a>
+              </strong>
+              {{video[1]}}
+            </div><br/><br/>
+          {% endfor %}
+        </body>
+      </html>
+
     </div>
 
   </body>
