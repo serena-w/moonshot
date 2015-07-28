@@ -129,7 +129,7 @@ class SearchHandler(webapp2.RequestHandler):
             'videos': videos
         }
 
-        template = env.get_template('index.html')
+        template = env.get_template('results.html')
         self.response.write(template.render(template_values))
 
 

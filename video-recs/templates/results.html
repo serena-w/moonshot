@@ -33,6 +33,7 @@
     <div class="video">
           <p>Videos: </p>
           {% for video in videos %}
+          <section id="result">
             <img src="{{ video[0].snippet.thumbnails.default.url }}" style="padding-right: 15px">
             <div style="vertical-align:top; display: inline-block">
               <strong>
@@ -41,6 +42,7 @@
                 </a>
               </strong>
               {{video[1]}}
+          </section>
             </div><br/><br/>
           {% endfor %}
         </body>
