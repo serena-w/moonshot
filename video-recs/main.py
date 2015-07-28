@@ -16,29 +16,23 @@
 #
 import webapp2
 import jinja2
+import urllib
+import isodate
+import datetime
 from google.appengine.ext import ndb
 from google.appengine.api import users
+from apiclient.discovery import build
 
 env = jinja2.Environment(loader = jinja2.FileSystemLoader('templates'))
 
-video_list = {'short': "https://www.youtube.com/watch?v=TZPN9g2pmPQ",
-              'medium': "https://www.youtube.com/watch?v=7oZu3-PU6KA",
-              'long': "https://www.youtube.com/watch?v=bgD9d4-nw5A"}
+API_KEY = "AIzaSyAx04A3kgr6A6WmICcFAjwcecSPOTKocIY"
+YOUTUBE_API_SERVICE_NAME = "youtube"
+YOUTUBE_API_VERSION = "v3"
+QUERY_TERM = "dog"
 
 class Search(ndb.Model):
     time = ndb.IntegerProperty(required=True)
     genre = ndb.StringProperty()
-
-class Results(object):
-    def __init__(self, search):
-        self.search = search
-        self.results=[""]
-        if search.time < 5:
-            self.results[0]=video_list["short"]
-        elif search.time>=5 and search.time<10:
-            self.results[0]=video_list["medium"]
-        else:
-            self.results[0]=video_list["long"]
 
 class SearchHandler(webapp2.RequestHandler):
     def get(self):
@@ -54,7 +48,7 @@ class SearchHandler(webapp2.RequestHandler):
         template = env.get_template('main.html')
         variables = {}
         self.response.write(template.render(variables))
-
+    """
     def post(self):
         time = int(self.request.get("time"))
         search = Search(time=time)
@@ -63,6 +57,80 @@ class SearchHandler(webapp2.RequestHandler):
         template = env.get_template('results.html')
         variables = {'link': results.results[0]}
         self.response.write(template.render(variables))
+    """
+
+    def convert_time(self, duration):
+        duration_time = isodate.parse_duration(duration)
+        print duration
+        print duration_time.total_seconds()
+        return duration_time.total_seconds()
+
+    def post(self):
+        youtube = build(
+            YOUTUBE_API_SERVICE_NAME,
+            YOUTUBE_API_VERSION,
+            developerKey=API_KEY
+          )
+        hours = self.request.get("HOURS")
+        if hours=="":
+            hours = 0
+        else:
+            hours = int(hours)
+        minutes = self.request.get("MINUTES")
+        if minutes=="":
+            minutes = 0
+        else:
+            minutes = int(minutes)
+        seconds = self.request.get("SECONDS")
+        if seconds=="":
+            seconds = 0
+        else:
+            seconds = int(seconds)
+
+        time = (hours*3600) + (minutes*60) + (seconds)
+        if time<360:
+            time_category = "short"
+        elif time<3600:
+            time_category="medium"
+        else:
+            time_category="long"
+        print "TIME:"
+        print time
+        search_response = youtube.search().list(
+            q=QUERY_TERM,
+            part="id, snippet",
+            maxResults=10,
+            type="video",
+            videoDuration=time_category
+          ).execute()
+
+        search_videos = []
+
+        for search_result in search_response.get("items", []):
+            search_videos.append(search_result["id"]["videoId"])
+        video_ids = ",".join(search_videos)
+
+        # Call the videos.list method to retrieve duration data for each video
+        video_response = youtube.videos().list(
+            id=video_ids,
+            part="id, snippet, contentDetails"
+        ).execute()
+
+        videos = []
+
+        # Add each result to the list
+        for video_result in video_response.get("items", []):
+            video_duration =  self.convert_time(video_result["contentDetails"]["duration"])
+            if video_duration <= time:
+                print "ADDING VIDEO"
+                videos.append([video_result, datetime.timedelta(seconds=video_duration)])
+
+        template_values = {
+            'videos': videos
+        }
+
+        template = env.get_template('index.html')
+        self.response.write(template.render(template_values))
 
 
 app = webapp2.WSGIApplication([
