@@ -3,13 +3,14 @@
   <body>
     <p>Videos: </p>
     {% for video in videos %}
-      <img src="{{ video.snippet.thumbnails.default.url }}" style="padding-right: 15px">
+      <img src="{{ video[0].snippet.thumbnails.default.url }}" style="padding-right: 15px">
       <div style="vertical-align:top; display: inline-block">
         <strong>
-          <a href="https://www.youtube.com/watch?v={{ video.id.videoId }}" target="_blank">
-            {{ video.snippet.title }}
+          <a href="https://www.youtube.com/watch?v={{ video[0].id.videoId }}" target="_blank">
+            {{ video[0].snippet.title }}
           </a>
         </strong>
+        {{video[1]}}
       </div><br/><br/>
     {% endfor %}
   </body>
