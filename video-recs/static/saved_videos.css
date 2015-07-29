@@ -1,0 +1,87 @@
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);*/
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,100italic|Roboto);
+#header
+{
+  padding: 20px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  border: 3px white dotted;
+  width: 25%;
+  margin: 2% auto;
+}
+.container
+{
+    margin: 0 auto;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);;
+    padding: 10px;
+}
+#header ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background:rgba(255, 255, 255, 0.5);;
+  float: left;
+  font-weight:bold;
+}
+#header li
+{
+  padding: 10px;
+  float:left;
+}
+.box-link
+{
+  border: 2px black solid;
+}
+#box-link-left
+{
+  border-right: 1px black dotted;
+}
+#header nav#right
+{
+  margin-right:10px;
+  float:right;
+}
+a:link
+{
+  text-decoration:none;
+  color: black;
+}
+a:visited
+{
+  color: black;
+}
+body
+{
+  background: lightblue;
+}
+#video-list
+{
+  margin: 0% auto;
+  width: 90%;
+}
+.video
+{
+  display: inline-block;
+  margin: 0% auto;
+  width: 49%;
+  text-align: center;
+}
+#ytplayer
+{
+  padding: 0% 2%;
+}
+p
+{
+  font-family: 'Roboto', sans-serif;
+}

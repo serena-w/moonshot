@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../static/results.css" media="screen" title="no title" charset="utf-8">
-    <title>Here's your video, Master</title>
+    <title>Here are videos to occupy your time!</title>
   </head>
   <body>
 
@@ -13,7 +13,6 @@
             <ul>
               <li><a href ="#">SAVED</a></li>
               <li><a href ="/">HOME</a></li>
-              <li><a href ="#">PROFILE</a></li>
             </ul>
           </nav>
           <nav id="right">
@@ -30,7 +29,7 @@
     </header>
 
     <h1 id="greeting">
-      Here's your excuse to waste time.
+      To occupy your time...
     </h1>
 
 
@@ -39,6 +38,7 @@
           {% if login_url %}
           <p>Please <a href="{{redirect_url}}">login</a> to save your videos</p>
           {% endif %}
+
           <form action="/save" method="post">
           {% for video in videos %}
           <section id="result">

@@ -2,15 +2,48 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../static/saved_videos.css" media="screen" title="no title" charset="utf-8">
     <title>Your Saved Videos</title>
   </head>
   <body>
-    {% for video in videos %}
-    <div>
-    <iframe id="ytplayer" type="text/html" width="640" height="390"
-      src="http://www.youtube.com/embed/{{video.vid_id}}"
-      frameborder="0"></iframe>
+
+    <header id ="header">
+          <div class ="container">
+          <nav id="left">
+            <ul class="box-link">
+              <li id="box-link-left"><a href ="/saved_videos">SAVED</a></li>
+              <li><a href ="/">HOME</a></li>
+            </ul>
+          </nav>
+          <nav id="right">
+            <ul class="box-link">
+              {% if login_url%}
+              <li id="box-link-left"><a href ="{{login_url}}">LOGIN</a></li>
+              {% endif%}
+              {% if logout_url%}
+              <li><a href ="{{logout_url}}">LOGOUT</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+    </header>
+
+    <h1 id="greeting">
+      To occupy your time...
+    </h1>
+
+
+    <div id="video-list">
+      {% for video in videos %}
+      <div class="video">
+        <iframe id="ytplayer" type="text/html" width="640" height="390"
+        src="http://www.youtube.com/embed/{{video.vid_id}}"
+        frameborder="0"></iframe>
+        <p>Added on {{video.added_date}}</p>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+
+
   </body>
 </html>
