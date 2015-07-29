@@ -4,6 +4,7 @@ from google.appengine.ext import ndb #module to interact with datastore
 from google.appengine.api import users #module to work with user accounts
 from apiclient.discovery import build #module to work with YouTube API
 import youtube
+import random
 
 # global variable that stores the configuration and global objects
 # uses the FileSystemLoader to lad template files from the folder "templates"
@@ -21,14 +22,20 @@ class SearchHandler(webapp2.RequestHandler):
         login_url = ''
         logout_url = ''
         email = ''
+        vid_list = ['/static/snow.mp4', '/static/sea.mp4']
+        x = random.randint(0, len(vid_list))
+        current_video = vid_list[x]
         if user:
             email = user.email()
             logout_url = users.create_logout_url('/')
         else:
             login_url = users.create_login_url(self.request.uri)
         template = env.get_template('main.html')
-        variables = {"logout_url":logout_url,"login_url":login_url}
+        variables = {"logout_url":logout_url,"login_url":login_url, 'current_video': current_video}
         self.response.write(template.render(variables))
+
+
+
 
     def post(self):
     # renders results page, calls on youtube module to do search and get video attributes
