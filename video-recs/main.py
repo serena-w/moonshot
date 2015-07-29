@@ -44,6 +44,20 @@ class SearchHandler(webapp2.RequestHandler):
 
     def post(self):
     # renders results page, calls on youtube module to do search and get video attributes
+        user = users.get_current_user()
+        login_url = ''
+        logout_url = ''
+        email = ''
+        if user:
+            user_key = ndb.Key('User', user.email())
+            check_user = models.User.query(models.User.key == user_key).fetch()
+            if check_user == []:
+                new_user = models.User(name=user.nickname(), id=user.email())
+                new_user.put()
+                user_key = ndb.Key('User', user.email())
+            logout_url = users.create_logout_url('/')
+        else:
+            login_url = users.create_login_url(self.request.uri)
         hours = self.request.get("HOURS")
         if hours=="":
             hours = 0
@@ -65,7 +79,7 @@ class SearchHandler(webapp2.RequestHandler):
         videos = youtube.search(time, self.request.get_all("genre"))
 
         template_values = {
-            'videos': videos
+            'videos': videos, 'login_url':login_url, 'logout_url':logout_url
         }
 
         template = env.get_template('results.html')
@@ -86,8 +100,8 @@ class SavedVideosHandler(webapp2.RequestHandler):
         else:
             login_url = users.create_login_url(self.request.uri)
         user_key = ndb.Key('User', user.email())
-        saved_vids= models.Video.query(models.Video.user_key == user_key)
-        template_data = {'saved_vids':saved_vids}
+        saved_vids = models.Video.query(models.Video.user_key == user_key).order(-models.Video.added_date).fetch()
+        template_data = {'videos':saved_vids}
         self.response.write(template.render(template_data))
 
     def post(self):
@@ -102,20 +116,19 @@ class SavedVideosHandler(webapp2.RequestHandler):
                 user_key = ndb.Key('User', user.email())
             logout_url = users.create_logout_url('/')
             for vid in vids:
-                saved_vid = models.Video(user_key = user_key,vid_id = vid)
-                saved_vid.put()
+                vid_key = ndb.Key('Video', vid+user.email())
+                check_vid = models.Video.query(models.Video.key == vid_key).fetch()
+                if check_vid == []:
+                    saved_vid = models.Video(user_key = user_key,vid_id = vid, id=(vid+user.email()))
+                    saved_vid.put()
             template = env.get_template('saved_videos.html')
-            videos = models.Video.query(models.Video.user_key == user_key).fetch()
-            print videos
+            videos = models.Video.query(models.Video.user_key == user_key).order(-models.Video.added_date).fetch()
             template_data = {"videos": videos}
             self.response.write(template.render(template_data))
         else:
             login_url = users.create_login_url('/')
             self.redirect(login_url)
 
-class Save(webapp2.RequestHandler):
-    def post(self):
-        template = env.get_template('results.html')
 
 
 app = webapp2.WSGIApplication([

@@ -18,8 +18,12 @@
           </nav>
           <nav id="right">
             <ul>
-              <li><a href ="#">LOGIN</a></li>
-              <li><a href ="#">LOGOUT</a></li>
+              {% if login_url%}
+              <li><a href ="{{login_url}}">LOGIN</a></li>
+              {% endif%}
+              {% if logout_url%}
+              <li><a href ="{{logout_url}}">LOGOUT</a></li>
+              {% endif %}
             </ul>
           </nav>
         </div>
