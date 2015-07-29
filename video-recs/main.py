@@ -72,10 +72,16 @@ class SavedVideosHandler(webapp2.RequestHandler):
         template_data = {}
         self.response.write(template.render(template_data))
 
+    def post(self):
+        template = env.get_template('saved_videos.html')
+        template_data = {}
+        self.response.write(template.render(template_data))
+
 
 
 app = webapp2.WSGIApplication([
     ('/', SearchHandler),
     ('/search', SearchHandler),
+    ('/saved', SavedVideosHandler),
     ('/saved_videos', SavedVideosHandler)
 ], debug=True)

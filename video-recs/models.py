@@ -4,9 +4,5 @@ class User(ndb.Model):
     name = ndb.StringProperty(required = True)
 
 class Video(ndb.Model):
-    user_key = ndb.KeyProperty()
+    user_key = ndb.KeyProperty(required = True)
     vid_id = ndb.StringProperty()
-    duration = ndb.IntegerProperty()
-    title = ndb.StringProperty()
-    image = ndb.StringProperty()
-    genre = ndb.StringProperty()
