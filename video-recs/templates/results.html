@@ -32,7 +32,7 @@
 
     <div class="video">
           <p>Videos: </p>
-          <form>
+          <form action="/save" method="post">
           {% for video in videos %}
           <section id="result">
             <img src="{{ video[0].snippet.thumbnails.default.url }}" style="padding-right: 15px">
