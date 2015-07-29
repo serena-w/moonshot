@@ -7,7 +7,7 @@ API_KEY = "AIzaSyAx04A3kgr6A6WmICcFAjwcecSPOTKocIY" # developer key
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
-#GENRES = ["comedy", "romance", "horror", "action", "mystery", "sci-fi"]
+BASIC_GENRES = ["Comedy", "Music", "Inspirational", "Gaming", "News", "Food", "Travel", "Fitness", "Animation", "Beauty"]
 GENRES = {'Comedy': ['Stand up comedy', 'Improv Skits', 'Epic Fail', 'Pranks', 'Best Bloopers'],
           'Music': ['Hip-Hop', 'Best Electronic Songs', 'Dirty House Music', 'DUMBFOUNDDEAD Korean Jesus', 'Chilled Mellow Songs', 'Funk Soul R&B'],
           'Inspirational': ['TED Talk', 'Inspirational Speech', 'Persistence Motivation', 'Success stories', 'Confidence'],
@@ -48,7 +48,7 @@ def search(time, genres):
     if len(genres)>1:
         genre = ' '.join(genres)
     elif len(genres)==0:
-        genre = random.choice(GENRES)
+        genre = random.choice(GENRES[random.choice(BASIC_GENRES)])
     else:
         genre = random.choice(GENRES[genres[0]])
 
