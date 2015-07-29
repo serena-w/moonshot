@@ -7,7 +7,18 @@ API_KEY = "AIzaSyAx04A3kgr6A6WmICcFAjwcecSPOTKocIY" # developer key
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
-GENRES = ["comedy", "romance", "horror", "action", "mystery", "sci-fi"]
+#GENRES = ["comedy", "romance", "horror", "action", "mystery", "sci-fi"]
+GENRES = {'Comedy': ['Stand up comedy', 'Improv Skits', 'Epic Fail', 'Pranks', 'Best Bloopers'],
+          'Music': ['Hip-Hop', 'Best Electronic Songs', 'Dirty House Music', 'DUMBFOUNDDEAD Korean Jesus', 'Chilled Mellow Songs', 'Funk Soul R&B'],
+          'Inspirational': ['TED Talk', 'Inspirational Speech', 'Persistence Motivation', 'Success stories', 'Confidence'],
+          'Gaming': ['Funny Walkthroughs', "Let's Play", 'Steam Roulette', 'FunHouse', 'Gameplay', 'Amazing videogame moments'],
+          'News': ['World News 2015', 'US Election 2016', 'US News 2015'],
+          'Food': ['Dessert Recipes', 'Delicious Intenational Cuisine', 'Best food in the world', 'Banned foods', 'Main Dish Recipes', 'Good Eats'],
+          'Travel': ['Best Tourist Attractions', 'Amazing Resorts', 'Most beautiful places in the world', 'World Heritege sites', 'Best travel destination'],
+          'Fitness': ['Kickboxing Workout', 'Pilates', 'Yoga', 'Circuit training', 'Crossfit'],
+          'Animation': ['Loony Toons', 'Animaniacs', 'Animated Shorts', 'Old School Cartoons'],
+          'Beauty': ['Makeup Tutorial', 'Hair tutorial', 'nail tutorial']
+          }
 
 def convert_time(duration):
     duration_time = isodate.parse_duration(duration)
@@ -39,7 +50,7 @@ def search(time, genres):
     elif len(genres)==0:
         genre = random.choice(GENRES)
     else:
-        genre = genres[0]
+        genre = random.choice(GENRES[genres[0]])
 
     print "chosen genre: " + genre
 
