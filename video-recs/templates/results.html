@@ -32,6 +32,7 @@
 
     <div class="video">
           <p>Videos: </p>
+          <form>
           {% for video in videos %}
           <section id="result">
             <img src="{{ video[0].snippet.thumbnails.default.url }}" style="padding-right: 15px">
@@ -42,9 +43,14 @@
                 </a>
               </strong>
               {{video[1]}}
+              <br>
+              <input type="checkbox" value="{{video[0].id}}" name="video_info">
+              Add to saved videos
           </section>
-            </div><br/><br/>
+          </div><br/><br/>
           {% endfor %}
+          <input type="submit" value="Save Videos For Later">
+        </form>
         </body>
       </html>
 
