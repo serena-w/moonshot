@@ -23,7 +23,7 @@ class SearchHandler(webapp2.RequestHandler):
         login_url = ''
         logout_url = ''
         email = ''
-        vid_list = ['/static/snow.mp4', '/static/sea.mp4', '/static/test.mp4']
+        vid_list = ['/static/snow.mp4', '/static/bluemotion.mp4','/static/rain.mp4','/static/sun.mp4']
         x = random.randint(0, len(vid_list) - 1)
         current_video = vid_list[x]
         if user:
@@ -96,14 +96,14 @@ class SavedVideosHandler(webapp2.RequestHandler):
             if check_user == []:
                 new_user = models.User(name=user.nickname(), id=user.email())
                 new_user.put()
-                user_key = ndb.Key('User', user.email())
+
             logout_url = users.create_logout_url('/')
+            saved_vids = models.Video.query(models.Video.user_key == user_key).order(-models.Video.added_date).fetch()
+            template_data = {'videos':saved_vids}
+            self.response.write(template.render(template_data))
         else:
             login_url = users.create_login_url(self.request.uri)
-        user_key = ndb.Key('User', user.email())
-        saved_vids = models.Video.query(models.Video.user_key == user_key).order(-models.Video.added_date).fetch()
-        template_data = {'videos':saved_vids}
-        self.response.write(template.render(template_data))
+            self.redirect(login_url)
 
     def post(self):
         vids = self.request.get_all('video_info')
