@@ -5,6 +5,7 @@ from google.appengine.api import users #module to work with user accounts
 from apiclient.discovery import build #module to work with YouTube API
 import youtube
 import random
+import models
 
 # global variable that stores the configuration and global objects
 # uses the FileSystemLoader to lad template files from the folder "templates"
@@ -26,7 +27,11 @@ class SearchHandler(webapp2.RequestHandler):
         x = random.randint(0, len(vid_list) - 1)
         current_video = vid_list[x]
         if user:
-            email = user.email()
+            user_key = ndb.Key('User', user.email())
+            check_user = models.User.query(models.User.key == user_key).fetch()
+            if check_user == []:
+                new_user = models.User(name=user.nickname(), id=user.email())
+                new_user.put()
             logout_url = users.create_logout_url('/')
         else:
             login_url = users.create_login_url(self.request.uri)
@@ -69,19 +74,53 @@ class SearchHandler(webapp2.RequestHandler):
 class SavedVideosHandler(webapp2.RequestHandler):
     def get(self):
         template = env.get_template('saved_videos.html')
-        template_data = {}
+        user = users.get_current_user()
+        if user:
+            user_key = ndb.Key('User', user.email())
+            check_user = models.User.query(models.User.key == user_key).fetch()
+            if check_user == []:
+                new_user = models.User(name=user.nickname(), id=user.email())
+                new_user.put()
+                user_key = ndb.Key('User', user.email())
+            logout_url = users.create_logout_url('/')
+        else:
+            login_url = users.create_login_url(self.request.uri)
+        user_key = ndb.Key('User', user.email())
+        saved_vids= models.Video.query(models.Video.user_key == user_key)
+        template_data = {'saved_vids':saved_vids}
         self.response.write(template.render(template_data))
 
     def post(self):
-        template = env.get_template('saved_videos.html')
-        template_data = {}
-        self.response.write(template.render(template_data))
+        vids = self.request.get_all('video_info')
+        user = users.get_current_user()
+        if user:
+            user_key = ndb.Key('User', user.email())
+            check_user = models.User.query(models.User.key == user_key).fetch()
+            if check_user == []:
+                new_user = models.User(name=user.nickname(), id=user.email())
+                new_user.put()
+                user_key = ndb.Key('User', user.email())
+            logout_url = users.create_logout_url('/')
+            for vid in vids:
+                saved_vid = models.Video(user_key = user_key,vid_id = vid)
+                saved_vid.put()
+            template = env.get_template('saved_videos.html')
+            videos = models.Video.query(models.Video.user_key == user_key).fetch()
+            print videos
+            template_data = {"videos": videos}
+            self.response.write(template.render(template_data))
+        else:
+            login_url = users.create_login_url('/')
+            self.redirect(login_url)
 
+class Save(webapp2.RequestHandler):
+    def post(self):
+        template = env.get_template('results.html')
 
 
 app = webapp2.WSGIApplication([
     ('/', SearchHandler),
     ('/search', SearchHandler),
-    ('/saved', SavedVideosHandler),
+    ('/save', SavedVideosHandler),
     ('/saved_videos', SavedVideosHandler)
 ], debug=True)
