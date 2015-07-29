@@ -1,0 +1,126 @@
+CRUD (The 4 database operations):
+Create
+Read
+Update
+Delete
+
+Questions to ask yourself:
+1. What data do I need to represent?
+  a. what do I call it?
+  b. What properties does it have?
+  c. how does it relate to other models?
+    I. One to many: only goes one way. Ex. User with many posts
+    II. Many to many:
+    III. These always use KeyProperty
+
+KeyProperties:
+  - It's like an arrow pointing from one model to another.
+  - The key lets you get the full object
+  - Keys are like phone numbers where you can call on it and ask for its properties.
+    the phone number itself doesn't give you the properties.
+  - Every model has a Key, you don't need to add it yourself.
+
+Lets assume there are two pages, A & B.
+A is a list of models
+B has details for one Model
+
+<a href = "/detail?key={{model.key.urlsafe()}}"
+
+
+CHEATS
+- If you're linking to a page that represents a model:
+  <a href = "/detail?key={{model.key.urlsafe()}}">
+
+  <form action = "/something" method="post">
+    <input type = 'hidden' name = 'model_key' value="{{model.key.urlsafe()}}"
+  </form>
+
+  In the Python Handler:
+
+  urlsafe_key = self.request.get('key')
+  key = ndb.Key(urlsafe = urlsafe_key) #turn into a real key object
+  model_name = key.get() # get the object from the database
+
+
+  Types that make a request:
+  Clicking on a link
+  typing into the query (url)
+  submitting a form
+
+
+datastore interaction:
+1. Read request
+2. interact with the database
+3. Send response
+
+=== Creating a New Model ===
+
+class Product(ndb.Model):
+  name = ndb.StringProperty()
+  description = ndb.TextProperty()
+  price = ndb.IntegerProperty()
+  sold_out = ndb.BooleanProperty()
+  sell_count = ndb.IntegerProperty()
+
+  <form action = '/product' method = 'post'>
+    <input type = "text" name = "name">
+    <textarea name = "description" ></textarea>
+    <input name = 'price' type = 'number'>
+    <input name = 'sold_out' type = 'checkbox' value = '1'>
+    <button> Submit! </button>
+  </form>
+
+class ProductHandler(webapp2.RequestHandler):
+  def get(self):
+    ...
+  def post(self):
+    name = self.request.get('name')
+    description = self.request.get('description')
+    price = int(self.request.get('price')) #self.request.get returns strings, so if you want, you must cast it
+    sold_out = bool(slef.request.get('sold_out'))
+
+    product = Product(name = name, description = description, price = price, sold_out = sold_out)
+    product.put()
+
+    self.redirect('/product?key=' + product.key.urlsafe())
+
+
+=== Query ===
+all_products = Product.query().fetch()
+all_people = Person.query().fetch()
+
+available_products = Product.query(Product.sold_out == False).fetch()
+
+
+=== One To Many ===
+
+- In a one-to-many relationship, each of the 'many' has a KeyProperty pointing to the "one"
+- This lets us:
+  a. Get the one that owns the 'many'
+
+
+class Mom(ndb.Model):
+    name = ndb.StringProperty()
+
+class Child(ndb.Model):
+  name.ndb.StringProperty
+  mom_key = ndb.KeyProperty(kind = Mom)
+
+/child?key=
+
+class ChildHandler(webapp2.RequestHandler):
+  def get(self):
+    child_key_urlsafe = self.request.get('key')
+    child_key = ndb.Key(urlsafe = child_key_urlsafe)
+    child = child_key.get()
+    mom_key = child.mom_key
+    mom = mom_key.get()
+
+/mom?key=....
+
+class MomHandler(webapp2.RequestHandler):
+  def get(self):
+    mom_key_urlsafe = self.request.get('key')
+    mom_key = ndb.Key(urlsafe = mom_key_urlsafe)
+    mom = mom_key.get()
+    children = Child.query(Child.mom_key == mom_key).fetch() #You want to compare the same types
