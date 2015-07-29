@@ -6,6 +6,7 @@ import random
 API_KEY = "AIzaSyAx04A3kgr6A6WmICcFAjwcecSPOTKocIY" # developer key
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
+
 GENRES = ["comedy", "romance", "horror", "action", "mystery", "sci-fi"]
 
 def convert_time(duration):
@@ -23,6 +24,7 @@ def search(time, genres):
         YOUTUBE_API_VERSION,
         developerKey=API_KEY
       )
+
     if time<360:
         time_category = "short"
     elif time<3600:
@@ -37,9 +39,10 @@ def search(time, genres):
     elif len(genres)==0:
         genre = random.choice(GENRES)
     else:
-        genre = genre[0]
+        genre = genres[0]
 
     print "chosen genre: " + genre
+
     search_response = youtube.search().list(
         q=genre,
         part="id, snippet",
@@ -53,6 +56,7 @@ def search(time, genres):
     for search_result in search_response.get("items", []):
         search_videos.append(search_result["id"]["videoId"])
     video_ids = ",".join(search_videos)
+    print "VIDEO ID'S: " + video_ids
 
     # Call the videos.list method to retrieve duration data for each video
     video_response = youtube.videos().list(
