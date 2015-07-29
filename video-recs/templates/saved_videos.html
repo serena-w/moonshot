@@ -5,6 +5,12 @@
     <title>Your Saved Videos</title>
   </head>
   <body>
-    Nothing here.
+    {% for video in videos %}
+    <div>
+    <iframe id="ytplayer" type="text/html" width="640" height="390"
+      src="http://www.youtube.com/embed/{{video.vid_id}}"
+      frameborder="0"></iframe>
+    </div>
+    {% endfor %}
   </body>
 </html>
