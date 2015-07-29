@@ -22,8 +22,8 @@ class SearchHandler(webapp2.RequestHandler):
         login_url = ''
         logout_url = ''
         email = ''
-        vid_list = ['/static/snow.mp4', '/static/sea.mp4']
-        x = random.randint(0, len(vid_list))
+        vid_list = ['/static/snow.mp4', '/static/sea.mp4', '/static/test.mp4']
+        x = random.randint(0, len(vid_list) - 1)
         current_video = vid_list[x]
         if user:
             email = user.email()
