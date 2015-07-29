@@ -48,6 +48,7 @@ class SearchHandler(webapp2.RequestHandler):
         login_url = ''
         logout_url = ''
         email = ''
+        redirect_url = users.create_login_url('/')
         if user:
             user_key = ndb.Key('User', user.email())
             check_user = models.User.query(models.User.key == user_key).fetch()
@@ -79,7 +80,7 @@ class SearchHandler(webapp2.RequestHandler):
         videos = youtube.search(time, self.request.get_all("genre"))
 
         template_values = {
-            'videos': videos, 'login_url':login_url, 'logout_url':logout_url
+            'videos': videos, 'login_url':login_url, 'logout_url':logout_url, 'redirect_url':redirect_url
         }
 
         template = env.get_template('results.html')

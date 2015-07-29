@@ -36,6 +36,9 @@
 
     <div class="video">
           <p>Videos: </p>
+          {% if login_url %}
+          <p>Please <a href="{{redirect_url}}">login</a> to save your videos</p>
+          {% endif %}
           <form action="/save" method="post">
           {% for video in videos %}
           <section id="result">
@@ -48,12 +51,16 @@
               </strong>
               {{video[1]}}
               <br>
+              {%if logout_url%}
               <input type="checkbox" value="{{video[0].id}}" name="video_info">
               Add to saved videos
+              {% endif %}
           </section>
           </div><br/><br/>
           {% endfor %}
+          {% if logout_url %}
           <input type="submit" value="Save Videos For Later">
+          {% endif %}
         </form>
         </body>
       </html>
