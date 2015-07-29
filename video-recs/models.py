@@ -1,15 +1,12 @@
 from google.appengine.ext import ndb
 
 class User(ndb.Model):
-    name = StringProperty(required = True)
+    name = ndb.StringProperty(required = True)
 
 class Video(ndb.Model):
-    identifaction = StringProperty()
-    duration = IntergerProperty()
-    title = StringProperty()
-    image = StringProperty()
-    genre = StringProperty()
-
-class UserVideo(ndb.Model):
-    user_key = KeyProperty()
-    video_key = KeyProperty()
+    user_key = ndb.KeyProperty()
+    vid_id = ndb.StringProperty()
+    duration = ndb.IntegerProperty()
+    title = ndb.StringProperty()
+    image = ndb.StringProperty()
+    genre = ndb.StringProperty()
