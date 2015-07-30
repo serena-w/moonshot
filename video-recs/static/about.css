@@ -1,0 +1,69 @@
+/*@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);*/
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,100italic|Roboto);
+@font-face {
+  font-family: 'NEOTERIC'
+  src: url(neotericc_-_bold_demo_version-webfont.ttf);
+}
+#header
+{
+  padding: 20px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  font-family: 'Lato', sans-serif;
+  font-style: italic;
+  text-decoration: underline;
+  font-weight: 100;
+  padding-left: 60px;
+  text-shadow: 4px 3px 3px black;
+  text-transform: uppercase;
+}
+#header ul
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background:rgba(255, 255, 255, 0.5);;
+  float: left;
+  font-weight:bold;
+}
+#header li
+{
+  padding: 10px;
+  float:left;
+}
+#header nav#right
+{
+  margin-right:10px;
+  float:right;
+}
+.container
+{
+    margin: 0 auto;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.5);;
+    padding: 10px;
+}
+a:link
+{
+  text-decoration:none;
+  color: black;
+}
+a:visited
+{
+  color: black;
+}
+body
+{
+  background:lightblue;
+}
+footer
+{
+  margin: 500px auto 0;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);;
+  padding: 20px;
+}

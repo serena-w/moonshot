@@ -10,6 +10,24 @@ import models
 # global variable that stores the configuration and global objects
 # uses the FileSystemLoader to lad template files from the folder "templates"
 env = jinja2.Environment(loader = jinja2.FileSystemLoader('templates'))
+class AboutHandler(webapp2.RequestHandler):
+    def get(self):
+        template = env.get_template('about.html')
+        user = users.get_current_user()
+        login_url = ''
+        logout_url = ''
+        email = ''
+        if user:
+            user_key = ndb.Key('User', user.email())
+            check_user = models.User.query(models.User.key == user_key).fetch()
+            if check_user == []:
+                new_user = models.User(name=user.nickname(), id=user.email())
+                new_user.put()
+            logout_url = users.create_logout_url('/')
+        else:
+            login_url = users.create_login_url(self.request.uri)
+        variables= {'login_url':login_url,'logout_url':logout_url}
+        self.response.write(template.render(variables))
 
 class SearchHandler(webapp2.RequestHandler):
     """
@@ -136,5 +154,6 @@ app = webapp2.WSGIApplication([
     ('/', SearchHandler),
     ('/search', SearchHandler),
     ('/save', SavedVideosHandler),
-    ('/saved_videos', SavedVideosHandler)
+    ('/saved_videos', SavedVideosHandler),
+    ('/about',AboutHandler)
 ], debug=True)
