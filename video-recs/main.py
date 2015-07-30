@@ -45,7 +45,7 @@ class SearchHandler(webapp2.RequestHandler):
                     '/static/cat.mp4', '/static/cow.mp4', '/static/eclipse.mp4',
                     '/static/old_man.mp4', '/static/otter.mp4', '/static/shadows.mp4',
                     '/static/sights.mp4', '/static/toytanic.mp4',
-                    '/static/doggie.mp4']
+                    '/static/doggie.mp4', '/static/michelle.mp4']
         x = random.randint(0, len(vid_list) - 1)
         current_video = vid_list[x]
         if user:

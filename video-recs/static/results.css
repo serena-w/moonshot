@@ -63,24 +63,33 @@ a:visited
 body
 {
   background: lightblue;
+  font-family: 'Roboto', sans-serif;
+}
+#message
+{
+  margin: 0% 4% 0.1%;
 }
 #result
 {
   padding: 5px;
   background: white;
+  margin: 0.01% 4%;
+}
+.video
+{
+  margin: 0% 2%;
 }
 
-
-
-/*.videoThum { float: left; margin-right: 15px; width: 250px; }
- .videoThum a { background: #ccc; border: 5px solid #fff; display: block; height: 170px; width: 240px; }
- .videoInfo { float: left; width: 55%; }
- .videoInfo h2 { font-size: 2.5em; font-weight: normal; }
- .videoInfo p { clear: both; color: #666; float: left; font-family: arial; font-size: 1.5em; margin: 2% 0; padding: 0 0 8px; width: 100%; }
-/**/
-.popup { background: #fff; border-radius: 5px; display: none; padding: 10px; position: absolute; width: 800px; z-index: 10; }
-.popup a.close { z-index: 999; background: #f60; color: #fff; display: block; font-size: 20px; padding: 5px; position: absolute; right: -5px; top: -15px; }
+.popup { background: rgba(255, 255, 255, 0); border-radius: 5px; display: none; padding: 10px; position: absolute; width: 800px; z-index: 10; }
+.popup a.close { z-index: 999; background: #3ACACA; color: #fff; display: block; font-size: 20px; padding: 2px 9px 4px; position: absolute; right: -5px; top: -15px; border-radius: 25%; }
 .video-container { float: left; height: 360px; left: 0; padding-bottom: 5%; padding-top: 25px; position: relative; top: 0; width: 100%; }
 .video-container .iframe { float: left; width: 100%; }
-.video-container .iframe iframe { float: left; height: 360px; width: 100%; }
+.video-container .iframe iframe { float: left; height: 450px; width: 100%; }
 .video-container .iframe h2{ font-size:2em; color:#F60; padding-bottom:10px;}
+.overlaybg {background: #000; display: none; height: 100%; opacity: 0.7; position: fixed; width: 100%; z-index: 6;}
+iframe
+{
+  float: left;
+  width: 100%;
+  height: 500px;
+}

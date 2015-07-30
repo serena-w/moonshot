@@ -6,7 +6,7 @@
     <title>Here are videos to occupy your time!</title>
   </head>
   <body>
-
+    <div class="overlaybg"></div>
     <header id ="header">
           <div class ="container">
           <nav id="left">
@@ -33,59 +33,48 @@
     </h1>
 
 
-    <div class="video">
-          <p>Videos: </p>
-          {% if login_url %}
-          <p>Please <a href="{{redirect_url}}">login</a> to save your videos</p>
-          {% endif %}
+    {% if login_url %}
+    <p id="message">Please <a href="{{redirect_url}}">login</a> to save your videos</p>
+    {% endif %}
 
-          <form action="/save" method="post">
-          {% for video in videos %}
-          <section id="result">
-            <div class="videoThum">
-              <a href="javascript:;"  rel="http://www.youtube.com/embed/{{video[0].id}}" class="youTubeVideo" >
-                <img src="{{ video[0].snippet.thumbnails.default.url }}" style="padding-right: 15px">
-              </a>
-            </div>
-            <div style="vertical-align:top; display: inline-block">
-              <strong>
+    <form action="/save" method="post">
+    {% for video in videos %}
+    <section id="result">
+      <div class="videoThum">
+        <a href="javascript:;"  rel="http://www.youtube.com/embed/{{video[0].id}}" class="youTubeVideo" >
+          <img src="{{ video[0].snippet.thumbnails.default.url }}" style="padding-right: 15px">
+        </a>
+      </div>
+      <div style="vertical-align:top; display: inline-block">
+        <strong>
+          <div class="videoThum">
+            <a href="javascript:;"  rel="http://www.youtube.com/embed/{{video[0].id}}" class="youTubeVideo" >
+              {{ video[0].snippet.title }}
+            </a>
+          </div>
+        </strong>
+        {{video[1]}}
+        <br>
+        {%if logout_url%}
+        <input type="checkbox" value="{{video[0].id}}" name="video_info">
+        Add to saved videos
+        {% endif %}
+    </section>
+    </div><br/><br/>
+    {% endfor %}
+    {% if logout_url %}
+    <input type="submit" value="Save Videos For Later">
+    {% endif %}
+  </form>
 
-                  <div class="videoThum"><a href="javascript:;"  rel="http://www.youtube.com/embed/GNb8T5NBdQg?list=PL6B08BAA57B5C7810" class="youTubeVideo" ><img src="img.jpg"/></a></div>
 
-
-
-
-                <div class="videoThum">
-                  <a href="javascript:;"  rel="http://www.youtube.com/embed/GNb8T5NBdQg?list=PL6B08BAA57B5C7810" class="youTubeVideo" >
-                    {{ video[0].snippet.title }}
-                  </a>
-                </div>
-              </strong>
-              {{video[1]}}
-              <br>
-              {%if logout_url%}
-              <input type="checkbox" value="{{video[0].id}}" name="video_info">
-              Add to saved videos
-              {% endif %}
-          </section>
-          </div><br/><br/>
-          {% endfor %}
-          {% if logout_url %}
-          <input type="submit" value="Save Videos For Later">
-          {% endif %}
-        </form>
-
+    <div class="popup youtube"> <a class="close" href="javascript:;" >x</a>
+      <div class="video-container">
+        <div class="iframe">
+          <iframe src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
-
-
-    <div class="popup youtube"> <a class="close" href="javascript:;" >X</a>
-  <div class="video-container">
-    <div class="iframe">
-      <h2></h2>
-      <iframe width="500" height="350" src="" frameborder="0" allowfullscreen></iframe>
-    </div>
-  </div>
-</div>
 
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
