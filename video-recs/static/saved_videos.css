@@ -85,3 +85,9 @@ p
 {
   font-family: 'Roboto', sans-serif;
 }
+#text
+{
+  margin: 10px 48px;
+  background: white;
+  /*color: white;*/
+}

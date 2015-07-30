@@ -40,7 +40,9 @@
         <iframe id="ytplayer" type="text/html" width="640" height="390"
         src="http://www.youtube.com/embed/{{video.vid_id}}"
         frameborder="0"></iframe>
+        <div id="text">
         <p>Added on {{video.added_date}}</p>
+      </div>
         <input type="checkbox" value="{{video.vid_id}}" name="selected_vid">
       </div>
       {% endfor %}
