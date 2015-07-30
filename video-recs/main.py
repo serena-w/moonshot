@@ -121,7 +121,7 @@ class SavedVideosHandler(webapp2.RequestHandler):
 
             logout_url = users.create_logout_url('/')
             saved_vids = models.Video.query(models.Video.user_key == user_key).order(-models.Video.added_date).fetch()
-            template_data = {'videos':saved_vids}
+            template_data = {'videos':saved_vids, 'logout_url': logout_url}
             self.response.write(template.render(template_data))
         else:
             login_url = users.create_login_url(self.request.uri)
@@ -129,6 +129,7 @@ class SavedVideosHandler(webapp2.RequestHandler):
 
     def post(self):
         vids = self.request.get_all('video_info')
+        removed_vids = self.request.get_all('selected_vid')
         user = users.get_current_user()
         if user:
             user_key = ndb.Key('User', user.email())
@@ -144,10 +145,36 @@ class SavedVideosHandler(webapp2.RequestHandler):
                 if check_vid == []:
                     saved_vid = models.Video(user_key = user_key,vid_id = vid, id=(vid+user.email()))
                     saved_vid.put()
+            # for remove_vid in removed_vids:
+            #     vid_key = ndb.Key('Video',remove_vid+user.email())
+            #     if vid_key:
+            #         vid = vid_key.get()
+            #         vid.delete()
             template = env.get_template('saved_videos.html')
             videos = models.Video.query(models.Video.user_key == user_key).order(-models.Video.added_date).fetch()
-            template_data = {"videos": videos}
+            template_data = {"videos": videos, 'logout_url': logout_url}
             self.response.write(template.render(template_data))
+        else:
+            login_url = users.create_login_url('/')
+            self.redirect(login_url)
+
+class RemoveHandler(webapp2.RequestHandler):
+    def post(self):
+        user = users.get_current_user()
+        if user:
+            user_key = ndb.Key('User', user.email())
+            check_user = models.User.query(models.User.key == user_key).fetch()
+            if check_user == []:
+                new_user = models.User(name=user.nickname(), id=user.email())
+                new_user.put()
+                user_key = ndb.Key('User', user.email())
+            logout_url = users.create_logout_url('/')
+            removed_vids = self.request.get_all('selected_vid')
+            for remove_vid in removed_vids:
+                vid_key = ndb.Key('Video',remove_vid+user.email())
+                if vid_key:
+                    vid_key.delete()
+            self.redirect('/saved_videos')
         else:
             login_url = users.create_login_url('/')
             self.redirect(login_url)
@@ -159,5 +186,6 @@ app = webapp2.WSGIApplication([
     ('/search', SearchHandler),
     ('/save', SavedVideosHandler),
     ('/saved_videos', SavedVideosHandler),
-    ('/about',AboutHandler)
+    ('/about',AboutHandler),
+    ('/remove', RemoveHandler),
 ], debug=True)

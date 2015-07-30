@@ -42,7 +42,7 @@ h3 {
 }
 .container
 {
-    margin: 0 auto;
+    margin: 0;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.5);;
     padding: 10px;
@@ -60,10 +60,64 @@ body
 {
   background:lightblue;
 }
+.block
+{
+  border-radius: 20px;
+  background:rgba(255, 255, 255, 0.5);;
+  float:left;
+  margin-bottom: 50px;
+}
+.blocktext
+{
+  background:white;
+}
+#leftblock
+{
+  margin-left: 100px;
+}
+#rightblock
+{
+  margin-top: 20px;
+  margin-left:110px;
+}
+#bottomblock
+{
+  margin-top:140px;
+  margin-left: 120px;
+  padding: 30px;
+}
+#content
+{
+  background:rgba(255, 255, 255, 0.5);
+  margin: 0 17px;
+  font-family: 'Roboto', sans-serif;
+  padding: 15px;
+  text-align: center;
+}
+#question
+{
+  margin-bottom: 20px;
+  background: white;
+  border-radius: 20px;
+  font-weight: bold;
+}
+#contributors
+{
+  clear:left;
+  background: white;
+}
+
+#contributors li
+{
+    list-style-type: none;
+    display:inline;
+}
 footer
 {
-  margin: 500px auto 0;
+  font-family: 'Roboto', sans-serif;
+  margin: 10px 17px 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.5);;
   padding: 20px;
+  font-weight: bold;
 }
