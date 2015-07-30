@@ -41,7 +41,11 @@ class SearchHandler(webapp2.RequestHandler):
         login_url = ''
         logout_url = ''
         email = ''
-        vid_list = ['/static/snow.mp4', '/static/bluemotion.mp4','/static/rain.mp4','/static/sun.mp4']
+        vid_list = ['/static/snow.mp4', '/static/bluemotion.mp4',
+                    '/static/rain.mp4','/static/sun.mp4', '/static/rubix.mp4',
+                    '/static/cat.mp4', '/static/cow.mp4', '/static/eclipse.mp4',
+                    '/static/old_man.mp4', '/static/otter.mp4', '/static/shadows.mp4',
+                    '/static/sights.mp4', '/static/toytanic.mp4']
         x = random.randint(0, len(vid_list) - 1)
         current_video = vid_list[x]
         if user:
