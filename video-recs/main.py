@@ -180,6 +180,16 @@ class RemoveHandler(webapp2.RequestHandler):
             self.redirect(login_url)
 
 
+class WatchHandler(webapp2.RequestHandler):
+    def get(self):
+        video_id = self.request.get('v')
+        video_list = self.request.get('list')
+        print 'This is it: ' + video_list
+        #template = env.get_template('watch.html')
+        #template_data = {'video_results': video_results}
+        self.response.write('hi')
+
+
 
 app = webapp2.WSGIApplication([
     ('/', SearchHandler),
@@ -188,4 +198,5 @@ app = webapp2.WSGIApplication([
     ('/saved_videos', SavedVideosHandler),
     ('/about',AboutHandler),
     ('/remove', RemoveHandler),
+    ('/watch', WatchHandler)
 ], debug=True)
