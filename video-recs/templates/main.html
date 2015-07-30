@@ -10,17 +10,16 @@
     <header id ="header">
           <div class ="container">
           <nav id="left">
-            <ul>
-              <li><a href ="/saved_videos">SAVED</a></li>
-              <li><a href ="#">HOME</a></li>
+            <ul class="box-link">
+              <li id="box-link-left"><a href ="/saved_videos">SAVED</a></li>
+              <li><a href ="/">HOME</a></li>
             </ul>
           </nav>
           <nav id="right">
-            <ul>
+            <ul class="box-link">
               {% if login_url%}
-              <li><a href ="{{login_url}}">LOGIN</a></li>
-              {% endif%}
-              {% if logout_url%}
+              <li id="box-link-left"><a href ="{{login_url}}">LOGIN</a></li>
+              {% else %}
               <li><a href ="{{logout_url}}">LOGOUT</a></li>
               {% endif %}
             </ul>
@@ -30,42 +29,29 @@
     <video id="bg" loop autoplay poster="/static/main_backgroud.jpg" muted="true">
         <source src={{current_video}} muted="true" type="video/mp4">
     </video>
-    <div id = "body">
+    <div id="body">
           <form action="/search" method="post">
-           <h3>Screen</h3>
-          <input type="number" min="0" max="24" value="hours" placeholder = "HOURS" name="HOURS">
-          <input type="number" min="1" max="60" value="minutes" placeholder = "MINUTES" name="MINUTES">
-          <input type="number" min="1" max="60" value="seconds" placeholder = "SECONDS" name="SECONDS"><br>
-              <div id = "check">
-                <ul id="categories">
-                  <li>Comedy</li>
-                  <li>Music</li>
-                  <li>Inspirational</li>
-                  <li>Gaming</li>
-                  <li>News</li>
-                  <li>Food</li>
-                  <li>Travel</li>
-                  <li>Fitness</li>
-                  <li>Animation</li>
-                  <li>Beauty</li>
-                </ul>
-                <div id="break">
-                </div>
+            <div id="page-title">Screen</div>
+            <div id="time-block">
+              <input type="number" min="0" max="24" value="hours" placeholder = "HOURS" name="HOURS">
+              <input type="number" min="1" max="60" value="minutes" placeholder = "MINUTES" name="MINUTES">
+              <input type="number" min="1" max="60" value="seconds" placeholder = "SECONDS" name="SECONDS"><br>
+            </div>
+              <div id="checkbox-block">
+                <input type="checkbox" value="Comedy" name="genre"> <p> Comedy </p>
+                <input type="checkbox" value="Music" name="genre"> <p> Music </p>
+                <input type="checkbox" value="Inspirational" name="genre"> <p> Inspirational </p>
+                <input type="checkbox" value="Gaming" name="genre"> <p> Gaming </p>
+                <input type="checkbox" value="News" name="genre"> <p> News </p>
+                <input type="checkbox" value="Food" name="genre"> <p> Food </p>
+                <input type="checkbox" value="Travel" name="genre"> <p> Travel </p>
+                <input type="checkbox" value="Fitness" name="genre"> <p> Fitness </p>
+                <input type="checkbox" value="Animation" name="genre"> <p> Animation </p>
+                <input type="checkbox" value="Beauty" name="genre"> <p> Beauty </p>
                 <br>
-                  <input type="checkbox" value="Comedy" name="genre">
-                  <input type="checkbox" value="Music" name="genre">
-                  <input type="checkbox" value="Inspirational" name="genre">
-                  <input type="checkbox" value="Gaming" name="genre">
-                  <input type="checkbox" value="News" name="genre">
-                  <input type="checkbox" value="Food" name="genre">
-                  <input type="checkbox" value="Travel" name="genre">
-                  <input type="checkbox" value="Fitness" name="genre">
-                  <input type="checkbox" value="Animation" name="genre">
-                  <input type="checkbox" value="Beauty" name="genre">
-                  <br>
-                  <input type="submit" value="Find Me Videos!">
+                <input type="submit" value="Find Me Videos!">
               </div>
         </form>
-    </div>
+      </div>
   </body>
 </html>
