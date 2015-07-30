@@ -173,10 +173,23 @@ input[type="checkbox"]
 
 #body input[type="submit"]:hover
 {
-
-  border-top-color: #5ba1cf;
-   background: #5ba1cf;
+  /*
+  background: #abc7d9;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3888bd), to(#abc7d9));
+  background: -webkit-linear-gradient(top, rgba(56, 136, 189, 0), #abc7d9);
+  background: -moz-linear-gradient(top, rgba(56, 136, 189, 0), #abc7d9);
+  background: -ms-linear-gradient(top, rgba(56, 136, 189, 0), #abc7d9);
+  background: -o-linear-gradient(top, rgba(56, 136, 189, 0), #abc7d9);
    color: #ffffff;
+   */
+
+   background: #8eb8d1;
+  background-image: -webkit-linear-gradient(top, rgba(139, 180, 204, 0), #f0f0f0);
+  background-image: -moz-linear-gradient(top, rgba(139, 180, 204, 0), #f0f0f0);
+  background-image: -ms-linear-gradient(top, rgba(139, 180, 204, 0), #f0f0f0);
+  background-image: -o-linear-gradient(top, rgba(139, 180, 204, 0), #f0f0f0);
+  background-image: linear-gradient(to bottom, rgba(139, 180, 204, 0), #f0f0f0);
+  text-shadow: 3px 3px 3px black;
 }
 
 #body input[type = 'submit']:active
@@ -184,6 +197,11 @@ input[type="checkbox"]
    border-top-color: #1b435e;
    background: #1b435e;
 }
+
+input[type = 'submit']:focus {
+  outline:0;
+}
+
 
 ::-webkit-input-placeholder
 {
