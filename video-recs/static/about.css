@@ -10,7 +10,23 @@
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
 }
-
+#page-title {
+  font: italic 2em 'Lato', sans-serif;
+  color: white;
+  text-align: center;
+  border: 3px white double;
+  width: 25%;
+  margin: 0% auto;
+}
+#greeting {
+  font-style: italic;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  width: 25%;
+  margin: 1% auto;
+}
 h3 {
   font-family: 'Lato', sans-serif;
   font-style: italic;
@@ -34,6 +50,14 @@ h3 {
 {
   padding: 10px;
   float:left;
+}
+.box-link
+{
+  border: 2px black solid;
+}
+#box-link-left
+{
+  border-right: 1px black dotted;
 }
 #header nav#right
 {
@@ -60,16 +84,23 @@ body
 {
   background:lightblue;
 }
+#step-blocks
+{
+  width: 90%;
+  margin: 0% auto;
+}
 .block
 {
   border-radius: 20px;
   background:rgba(255, 255, 255, 0.5);;
   float:left;
   margin-bottom: 50px;
+  height: 10%;
 }
 .blocktext
 {
   background:white;
+  margin: 1em;
 }
 #leftblock
 {
@@ -77,19 +108,27 @@ body
 }
 #rightblock
 {
-  margin-top: 20px;
-  margin-left:110px;
+  margin: 0% 2%;
+  padding: 0% 0.5% 3.5%
+}
+#category-img
+{
+  height: 50%;
 }
 #bottomblock
 {
-  margin-top:140px;
-  margin-left: 120px;
-  padding: 30px;
+  padding: 0% 3% 10.5%;
+  margin: 0% 0%;
+}
+#video-img
+{
+  height: 50%;
+  margin-top: 30%;
 }
 #content
 {
-  background:rgba(255, 255, 255, 0.5);
-  margin: 0 17px;
+  margin: 0 auto;
+  width: 100%;
   font-family: 'Roboto', sans-serif;
   padding: 15px;
   text-align: center;
@@ -97,27 +136,16 @@ body
 #question
 {
   margin-bottom: 20px;
-  background: white;
   border-radius: 20px;
   font-weight: bold;
-}
-#contributors
-{
-  clear:left;
-  background: white;
-}
-
-#contributors li
-{
-    list-style-type: none;
-    display:inline;
 }
 footer
 {
   font-family: 'Roboto', sans-serif;
-  margin: 10px 17px 0;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.5);;
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  padding: 1%;
   font-weight: bold;
+  width: 100%;
 }

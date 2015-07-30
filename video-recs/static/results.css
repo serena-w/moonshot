@@ -38,6 +38,14 @@ h1 {
   padding: 10px;
   float:left;
 }
+.box-link
+{
+  border: 2px black solid;
+}
+#box-link-left
+{
+  border-right: 1px black dotted;
+}
 #header nav#right
 {
   margin-right:10px;

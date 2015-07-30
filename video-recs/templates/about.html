@@ -8,18 +8,17 @@
       <header id ="header">
             <div class ="container">
             <nav id="left">
-              <ul>
-                <li><a href ="/saved_videos">SAVED</a></li>
-                <li><a href ="/">HOME</a></li>
+              <ul class="box-link">
+                <li id="box-link-left"><a href ="/">HOME</a></li>
+                <li id="box-link-left"><a href ="/saved_videos">SAVED</a></li>
                 <li><a href ="/about">ABOUT</a></li>
               </ul>
             </nav>
             <nav id="right">
-              <ul>
+              <ul class="box-link">
                 {% if login_url%}
-                <li><a href ="{{login_url}}">LOGIN</a></li>
-                {% endif%}
-                {% if logout_url%}
+                <li id="box-link-left"><a href ="{{login_url}}">LOGIN</a></li>
+                {% else %}
                 <li><a href ="{{logout_url}}">LOGOUT</a></li>
                 {% endif %}
               </ul>
@@ -28,35 +27,31 @@
       </header>
     <section id ="content">
         <div id="question">
-            <h1>
+            <h1 id="page-title">
               Screen
             </h1>
-            <p>Limited in time? Not quite sure what to watch?</p><br>
+            <h1 id="greeting">
+              Waste your time, effectively
+            </h1>
       </div>
+      <div id="step-blocks">
         <div id="leftblock" class="block">
             <p class="blocktext">1. Put in the time you have</p>
             <img src="/static/hourglass.png"/>
         </div>
         <div id="rightblock" class="block">
-        <p class="blocktext">2.Choose a category</p>
-            <img src="/static/category.png"/>
+        <p class="blocktext">2. Choose a category</p>
+            <img src="/static/category.png"/ id="category-img">
         </div>
         <div id="bottomblock" class="block">
-        <p class="blocktext">3.Pick a video</p>
-            <img src="/static/video.ico"/>
+        <p class="blocktext">3. Pick a video</p>
+            <img src="/static/video.ico" id="video-img"/>
         </div>
-        <div id="contributors">
-            <p>Designed and coded by:</p>
-            <ul>
-              <li>Serena Wang, </li>
-              <li>Sheldon Lau, </li>
-              <li>Victor Sanchez Gutierrez</li>
-            </ul>
       </div>
   </section>
     <footer>
       <div id="box">
-      Videos provided by the Youtube API.
+      Designed and coded by Serena Wang, Sheldon Lau, and Victor Sanchez Gutierrez. Videos provided by the Youtube API.
       </div>
     </footer>
   </body>
