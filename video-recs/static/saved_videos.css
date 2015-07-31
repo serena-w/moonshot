@@ -6,16 +6,28 @@
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
 }
-
-h1 {
-  font-family: 'Lato', sans-serif;
+#logo
+{
+  width: 7%;
+  margin: 1% auto;
+  display: block;
+}
+#page-title {
+  font: italic 2em 'Lato', sans-serif;
+  color: white;
+  text-align: center;
+  border: 3px white double;
+  width: 25%;
+  margin: 0% auto;
+}
+#greeting {
   font-style: italic;
+  font-family: 'Lato', sans-serif;
   font-weight: bold;
   color: white;
   text-align: center;
-  border: 3px white dotted;
   width: 25%;
-  margin: 2% auto;
+  margin: 1% auto;
 }
 .container
 {
