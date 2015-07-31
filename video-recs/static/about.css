@@ -86,11 +86,61 @@ a:visited
 {
   color: black;
 }
-body
+html, body
 {
   background:lightblue;
+  margin: 0px;
+}
+#bottomblock {
+    float:left;
+    width:100%;
+    overflow:hidden;
+    position:relative;
+    border-radius: 1%;
+    background:rgba(255, 255, 255, 0.5);
+    margin-bottom: 5%;
+}
+#rightblock {
+    float:left;
+    width:100%;
+    position:relative;
+    right:30%;
+    background:rgba(255, 255, 255, 0.5);;
+}
+#leftblock {
+    float:left;
+    width:100%;
+    position:relative;
+    right:40%;
+    background:rgba(255, 255, 255, 0.5);;
+}
+#col1 {
+    float:left;
+    width:26%;
+    position:relative;
+    left:72%;
+    overflow:hidden;
+}
+#col2 {
+    float:left;
+    width:36%;
+    position:relative;
+    left:76%;
+    overflow:hidden;
+}
+#col3 {
+    float:left;
+    width:26%;
+    position:relative;
+    left:80%;
+    overflow:hidden;
 }
 #step-blocks
+{
+  width: 80%;
+  margin: 0% auto;
+}
+/*#step-blocks
 {
   width: 90%;
   margin: 0% auto;
@@ -98,7 +148,7 @@ body
 .block
 {
   border-radius: 20px;
-  background:rgba(255, 255, 255, 0.5);;
+  background:rgba(255, 255, 255, 0.5);
   margin-bottom: 50px;
   height: 10%;
   display: inline-block;
@@ -131,13 +181,25 @@ body
 {
   height: 50%;
   margin-top: 30%;
+}*/
+#time-img
+{
+  height: 40%;
+}
+#category-img
+{
+  height: 40%;
+}
+#video-img
+{
+  height: 50%;
+  margin-top: 5%;
 }
 #content
 {
-  margin: 0 auto;
+  margin: 0px;
   width: 100%;
   font-family: 'Roboto', sans-serif;
-  padding: 15px;
   text-align: center;
 }
 #question
