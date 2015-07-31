@@ -199,4 +199,4 @@ app = webapp2.WSGIApplication([
     ('/about',AboutHandler),
     ('/remove', RemoveHandler),
     ('/watch', WatchHandler)
-], debug=True)
+], debug=False)
